@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "2c6f8b0c-e2c7-46d0-afca-96de49de0564",
+		"name": "Strapi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "947b9135-e08b-4102-a004-60c31a941558",
+						"exec": [
+							"var response = JSON.parse(responseBody);",
+							"console.log(response);",
+							"if (response && response.jwt) {",
+							"    console.log(response.jwt);",
+							"    postman.setGlobalVariable('jwt', response.jwt);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "identifier",
+							"value": "Moncho",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "moncho",
+							"type": "text"
+						},
+						{
+							"key": "identifier",
+							"value": "Pepe Jeans",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/local",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"local"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "947b9135-e08b-4102-a004-60c31a941558",
+						"exec": [
+							"var response = JSON.parse(responseBody);",
+							"console.log(response);",
+							"if (response && response.jwt) {",
+							"    console.log(response.jwt);",
+							"    postman.setGlobalVariable('jwt', response.jwt);",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{jwt}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "from",
+							"value": "webmaster@assemblyandcreations.com",
+							"type": "text"
+						},
+						{
+							"key": "to",
+							"value": "ramon.pena.rodriguez@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "html",
+							"value": "<p>Hello</p>",
+							"type": "text"
+						},
+						{
+							"key": "text",
+							"value": "Hello Mon",
+							"type": "text"
+						},
+						{
+							"key": "subject",
+							"value": "hola que ahse",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/email",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"email"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Pepe Jeans",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pep@jeans.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/local/register",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"local",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "pep@jeans.com",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/auth/local/forgot-password",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"auth",
+						"local",
+						"forgot-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "Pepe Jeans",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "pep@jeans.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{URL}}/posts/count",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"posts",
+						"count"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
