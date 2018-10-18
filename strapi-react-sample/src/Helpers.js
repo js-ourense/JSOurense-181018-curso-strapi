@@ -14,6 +14,17 @@ const helpers = {
 
   getPost: (slug) => {
     return axios.get(baseURL + '/posts?slug=' + slug)
+  },
+
+  getNumberOfPosts: () => {
+    return axios.get(baseURL + '/posts/count')
+  },
+
+  getNumberOfPages: (numberOfPosts) => {
+    if (numberOfPosts === 0) {
+      return 1
+    }
+    return Math.ceil(numberOfPosts / perPage)
   }
 
 }

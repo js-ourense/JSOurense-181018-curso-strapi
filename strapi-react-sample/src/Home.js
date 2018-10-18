@@ -20,13 +20,25 @@ class Home extends Component {
 
   getThePosts(page) {
     helpers.getPosts(page).then(
-      (result) => {
-        // console.log(result.data)
+      async (result) => {
+        // console.log(result)
+        let numberOfPosts = 0
+        let numberOfPostsCall = await helpers.getNumberOfPosts()
+        if (numberOfPostsCall.data > 0) {
+          numberOfPosts = numberOfPostsCall.data
+        }
+        console.log(numberOfPosts)
+        let numberOfPages = 1
+        let getNumberOfPagesCall = await helpers.getNumberOfPages(numberOfPosts)
+        if (getNumberOfPagesCall.data > 0) {
+          numberOfPages = getNumberOfPagesCall.data
+        }
+        console.log(numberOfPages)
         if (result && result.data) {
           this.setState({
             currentPage: page,
-            totalPages: result.headers['x-wp-totalpages'],
-            totalPosts: result.headers['x-wp-total'],
+            totalPages: numberOfPages,
+            totalPosts: numberOfPosts,
             posts: result.data
           })
         }
